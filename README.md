@@ -50,3 +50,31 @@ The plugin looks at the response data it has been provided with and tries to det
 
 As it loops over each input in the form it determines the type (checkbox, text, select, radio, etc.) or name of the input and redirects to a specific action for that input type.  If the data object contains a value that matches the local input it will update the local input with that value, including correctly selecting/unselecting items within checkboxes, radio buttons, select and multiple select inputs.
 
+
+```
+# Example to load/reload a form using jQuery – including eoCFpopulate.js plugin
+
+$('.load-form').click(function(){
+	$.ajax({
+	type: 'GET',
+	url: '/controllers/controllerName.cfc?method=getDataMethod&returnFormat=jsonQuery',
+	beforeSend: function(x) {
+	  if(x && x.overrideMimeType) {
+	   x.overrideMimeType("application/j-son;charset=UTF-8");
+	  }
+	 },
+	dataType: "json",
+
+	success: function(response) {
+	
+	// populate form with custom plugin - use returned JSON data
+	$('#formID).cfeoPopulate(response,{fieldName:"FIELDNAME",fieldValue:"FIELDVALUE"});				
+									
+	}, 
+	error: function(errorMsg){
+		// output any error messages in a pre-defined area
+		$('.form-results').html(errorMsg);
+									}
+	});
+	return false;
+```
