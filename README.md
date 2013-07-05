@@ -52,7 +52,7 @@ As it loops over each input in the form it determines the type (checkbox, text, 
 
 
 ```
-# Example to load/reload a form using jQuery – including eoCFpopulate.js plugin
+# Example to load/reload a form using jQuery – including cfeoPopulate.js plugin
 
 $('.load-form').click(function(){
 	$.ajax({
